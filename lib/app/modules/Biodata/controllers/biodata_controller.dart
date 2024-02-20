@@ -26,7 +26,7 @@ class BiodataController extends GetxController {
   List<String> getHobiList() => hobiList;
 
   var isFormSubmitted = false.obs;
-  var selectedDate = ''.obs;
+  // var selectedDate = ''.obs;
   Future<void> selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -37,7 +37,7 @@ class BiodataController extends GetxController {
 
     if (picked != null) {
       final formattedDate = DateFormat('yyyy-MM-dd').format(picked);
-      selectedDate.value = formattedDate;
+      tanggalLahir.value = formattedDate;
     }
   }
 

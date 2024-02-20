@@ -43,8 +43,8 @@ class BiodataView extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Tanggal Lahit'),
-                          Obx(() => Text(biodataController.selectedDate.value)),
+                          Text('Tanggal Lahir'),
+                          Obx(() => Text(biodataController.tanggalLahir.value)),
                         ],
                       ),
                     ),
@@ -62,7 +62,7 @@ class BiodataView extends StatelessWidget {
                   Row(
                     children: [
                       Obx(() => Radio(
-                            value: 'Laki-laki',
+                            value: 'Laki-Laki',
                             groupValue: biodataController.jenisKelamin.value,
                             onChanged: (value) =>
                                 biodataController.jenisKelamin.value = value!,
