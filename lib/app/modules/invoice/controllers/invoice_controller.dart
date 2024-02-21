@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -74,11 +74,12 @@ class InvoiceController extends GetxController {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime(2100),
+      lastDate: DateTime(Duration(days: 7) as int),
     );
 
     if (picked != null) {
-      final formattedDate = DateFormat('yyyy-MM-dd').format(picked);
+      final expired = picked.add(Duration(days: 7));
+      final formattedDate = DateFormat('yyyy-MM-dd').format(expired);
       expired_date.value = formattedDate;
     }
   }

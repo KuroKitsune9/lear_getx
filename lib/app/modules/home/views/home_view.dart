@@ -44,7 +44,19 @@ class HomeView extends GetView<HomeController> {
                 Get.toNamed('/invoice');
               },
               child: Text("Go to invoice page"),
-            )
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Get.toNamed('/login');
+              },
+              child: Text("Go to Login page"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Get.toNamed('/register');
+              },
+              child: Text("Go to register page"),
+            ),
           ],
         ),
       ),

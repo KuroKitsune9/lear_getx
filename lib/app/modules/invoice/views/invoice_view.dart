@@ -214,25 +214,6 @@ class InvoiceView extends GetView<InvoiceController> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(20),
-                child: InkWell(
-                  onTap: () => invoiceController.ExpiredDate(context),
-                  child: InputDecorator(
-                    decoration: InputDecoration(
-                      labelText: 'Expired Date',
-                      hintText: 'Pilih Tanggal',
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Obx(() => Text(invoiceController.expired_date.value)),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Container(
                   margin: EdgeInsets.all(10),
                   padding: EdgeInsets.all(20),
                   child: Row(
