@@ -27,7 +27,6 @@ class LoginController extends GetxController {
       var response = await _performLogin();
       var responseBody = json.decode(response.body);
       print(responseBody);
-
       if (response.statusCode == 200 && responseBody['token'] != null) {
         _saveUserData(responseBody);
         Get.offAllNamed('/home');
@@ -56,6 +55,7 @@ class LoginController extends GetxController {
   void _saveUserData(Map<String, dynamic> responseBody) async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     localStorage.setString('token', responseBody['token']);
-    localStorage.setString('user', json.encode(responseBody['user']));
+    String jsonString = jsonEncode(responseBody['data']);
+    localStorage.setString('user', jsonString);
   }
 }

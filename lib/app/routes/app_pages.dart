@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
-import 'package:learn_getx/app/middlewares/auth_middleware.dart';
+import 'package:learn_getx/app/modules/user/views/user_create.dart';
+import 'package:learn_getx/app/modules/user/views/user_edit.dart';
+import 'package:learn_getx/app/modules/user/views/user_show.dart';
 
+import '../middlewares/auth_middleware.dart';
 import '../modules/Biodata/bindings/biodata_binding.dart';
 import '../modules/Biodata/views/biodata_view.dart';
 import '../modules/Login/bindings/login_binding.dart';
@@ -15,6 +18,8 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
+import '../modules/user/bindings/user_binding.dart';
+import '../modules/user/views/user_view.dart';
 
 part 'app_routes.dart';
 
@@ -26,7 +31,7 @@ class AppPages {
   static final routes = [
     GetPage(
         name: _Paths.HOME,
-        page: () => const HomeView(),
+        page: () => HomeView(),
         binding: HomeBinding(),
         middlewares: [AuthMiddleware()]),
     GetPage(
@@ -59,5 +64,22 @@ class AppPages {
       page: () => RegisterView(),
       binding: RegisterBinding(),
     ),
+    GetPage(
+      name: _Paths.USER,
+      page: () => UserView(),
+      binding: UserBinding(),
+    ),
+    GetPage(
+      name: _Paths.TambahUser,
+      page: () => TambahView(),
+    ),
+    GetPage(
+      name: _Paths.EditUser,
+      page: () => EditUserView(user: Get.arguments),
+    ),
+    GetPage(
+      name: _Paths.ShowUser,
+      page: () => DetailUserView(user: Get.arguments),
+    )
   ];
 }

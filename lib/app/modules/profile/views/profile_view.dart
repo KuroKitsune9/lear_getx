@@ -32,14 +32,14 @@ class ProfileView extends GetView<ProfileController> {
                         height: 8,
                       ),
                       Text(
-                        'Nama: ${controller.user['name']}',
+                        'Nama: ${controller.user.value.name}',
                         style: TextStyle(fontSize: 18),
                       ),
                       SizedBox(
                         height: 16.0,
                       ),
                       Text(
-                        'Email: ${controller.user['email']}',
+                        'Email: ${controller.user.value.email}',
                         style: TextStyle(fontSize: 18),
                       )
                     ],

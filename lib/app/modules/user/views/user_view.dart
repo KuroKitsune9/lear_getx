@@ -2,38 +2,67 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:learn_getx/app/modules/user/views/user_edit.dart';
+import 'package:learn_getx/app/modules/user/views/user_show.dart';
 
-import '../controllers/home_controller.dart';
+import '../controllers/user_controller.dart';
 
-class HomeView extends GetView<HomeController> {
-  HomeView({Key? key}) : super(key: key);
+class UserView extends StatelessWidget {
+  UserView({Key? key}) : super(key: key);
 
-  int _selectedIndex = 0;
+  final UserController controller = Get.put(UserController());
+
   @override
   Widget build(BuildContext context) {
+    int _selectedIndex = 1;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomeView'),
-        centerTitle: true,
+        title: const Text('Daftar User'),
         actions: [
           IconButton(
               onPressed: () {
-                Get.toNamed('/profile');
+                Get.toNamed('/tambah-user');
               },
-              icon: Icon(Icons.person))
+              icon: Icon(Icons.add))
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'HomeView is working',
-              style: TextStyle(fontSize: 20),
-            )
-          ],
-        ),
-      ),
+      body: Obx(() => controller.userList.isEmpty
+          ? Center(child: CircularProgressIndicator())
+          : ListView.builder(
+              itemCount: controller.userList.length,
+              itemBuilder: (context, index) {
+                var user = controller.userList[index];
+                return ListTile(
+                  title: Row(
+                    children: [
+                      Expanded(
+                        child: Text(user.name.toString()),
+                      ),
+                      Expanded(
+                        child: Text(user.email.toString()),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Get.to(() => EditUserView(user: user));
+                        },
+                        icon: Icon(Icons.edit),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Get.to(DetailUserView(user: user));
+                        },
+                        icon: Icon(Icons.visibility),
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            controller.deleteUser(user);
+                          },
+                          icon: Icon(Icons.delete))
+                    ],
+                  ),
+                );
+              },
+            )),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
